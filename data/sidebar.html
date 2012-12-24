@@ -1,0 +1,42 @@
+<!doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Minimap Scroller Sidebar</title>
+    <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #minimap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        image-rendering: -moz-crisp-edges;
+    }
+
+    p { /* debug */
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+
+    #scroller {
+        position: absolute;
+        z-index: 2;
+        background: rgba(100, 100, 100, 0.5);
+        display: none;
+        border: 1px solid black;
+    }
+    </style>
+</head>
+<body><div id="scroller"></div></body>
+</html>
