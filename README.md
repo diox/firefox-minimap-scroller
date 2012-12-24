@@ -45,3 +45,19 @@ Here are the main issues I plan to fix before considering the addon somewhat
   and tabs. In fact, try to find a way to properly test the addon :-)
 
 - Clean up code
+
+
+Installation instructions
+-------------------------
+
+You'll have to package the extension yourself to test it since it's not
+distributed anywhere at the moment.
+
+- Install the [Add-on SDK][].
+
+- Once inside the SDK environnement, go to the add-on directory, and run
+  `cfx xpi`.
+
+- Drag & drop the resulting xpi to firefox.
+
+[Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
