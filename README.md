@@ -19,7 +19,7 @@ particularly Sublime Text 2.
 Current state and roadmap
 -------------------------
 
-Current version is 0.0.6. It's very much **experimental**, may crash your 
+Current version is 0.0.7. It's very much **experimental**, may crash your 
 computer, have horrible memory leaks, be terribly slow, etc, so for the moment,
 don't bother reporting these kind of issues unless you can tell me how to fix
 them :-)
@@ -41,8 +41,7 @@ Here are the main issues I plan to fix before considering the addon somewhat
 - Make sidebar accessible, include menu-item to de-activate it or move it
   to the side.
 
-- Properly test de-activation and re-activation, including with multiple windows
-  and tabs. In fact, try to find a way to properly test the addon :-)
+- Find a way to properly unit test the addon
 
 - Clean up code
 
