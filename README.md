@@ -31,9 +31,6 @@ Here are the main issues I plan to fix before considering the addon somewhat
   tab, updating it in the background, and show the right one when activating a
   tab.
 
-- Have minimap auto-scroll when it's not big enough to represent the full
-  document (essential for long pages).
-
 - Find a way to use MozAfterPaint to be able to react to CSS-only changes.
   Investigate whether it could eventually replace the whole content-script 
   or not.  
