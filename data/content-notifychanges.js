@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     });
     observer._timeout = null;
-    observer.observe(document.body, {
+    observer.observe(document.documentElement, {
         subtree: true,
         attributes: false,
         childList: true,
