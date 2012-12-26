@@ -19,7 +19,7 @@ particularly Sublime Text 2.
 Current state and roadmap
 -------------------------
 
-Current version is 0.0.7. It's very much **experimental**, may crash your 
+Current version is 0.0.8. It's very much **experimental**, may crash your 
 computer, have horrible memory leaks, be terribly slow, etc, so for the moment,
 don't bother reporting these kind of issues unless you can tell me how to fix
 them :-)
