@@ -42,6 +42,18 @@ Here are the main issues I plan to fix before considering the addon somewhat
 
 - Clean up code
 
+Preview
+-------
+
+Here is what it looks like:
+![Image Preview][Image Preview]
+
+In addition, I made a small [screencast][Video Preview] (OGV format, 50 seconds,
+no sound) demonstrating the addon.
+
+[Image Preview]: http://virgule.net/tmp/firefox-minimap-scroller-0.0.8.jpg
+[Video Preview]: http://virgule.net/tmp/firefox-minimap-scroller-0.0.8.ogv
+
 
 Installation instructions
 -------------------------
