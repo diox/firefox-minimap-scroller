@@ -51,9 +51,33 @@ distributed anywhere at the moment.
 
 - Install the [Add-on SDK][].
 
-- Once inside the SDK environnement, go to the add-on directory, and run
-  `cfx xpi`.
+- Once inside the SDK environnement (having activated it using ``source
+  bin/activate``), go to the add-on directory, and run `cfx xpi`.
 
 - Drag & drop the resulting xpi to firefox.
 
 [Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
+
+If by chance (?) you're running Archlinux (or some other distribution that uses
+py3k by default), activating the add-on sdk will display an error message:
+
+> Error: You appear to be using Python 3, but the Add-on SDK only supports the
+> Python 2.x line.
+
+The fix is easy:
+
+1. symlink your python2 executable to the add-on sdk bin folder
+2. change your path before activating the SDK
+
+    $ cd /path/to/addon-sdk/
+    $ ln -s /usr/bin/python2 bin/
+    $ export PATH=`pwd`/bin:$PATH
+    $ source bin/activate
+    $ cd /path/to/firefox-minimap-scroller/
+    $ cfx xpi
+
+
+The mandatory screenshot
+------------------------
+
+![The mandatory screenshot](https://raw.github.com/diox/firefox-minimap-scroller/master/doc/screenshots/screen1.png)
