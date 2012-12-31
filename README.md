@@ -69,12 +69,14 @@ The fix is easy:
 1. symlink your python2 executable to the add-on sdk bin folder
 2. change your path before activating the SDK
 
+```shell
     $ cd /path/to/addon-sdk/
     $ ln -s /usr/bin/python2 bin/
     $ export PATH=`pwd`/bin:$PATH
     $ source bin/activate
     $ cd /path/to/firefox-minimap-scroller/
     $ cfx xpi
+```
 
 
 The mandatory screenshot
