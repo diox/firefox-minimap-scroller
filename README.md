@@ -19,7 +19,7 @@ particularly Sublime Text 2.
 Current state and roadmap
 -------------------------
 
-Current version is 0.0.8. It's very much **experimental**, may crash your 
+Current version is 0.0.9. It's very much **experimental**, may crash your 
 computer, have horrible memory leaks, be terribly slow, etc, so for the moment,
 don't bother reporting these kind of issues unless you can tell me how to fix
 them :-)
@@ -35,8 +35,8 @@ Here are the main issues I plan to fix before considering the addon somewhat
   Investigate whether it could eventually replace the whole content-script 
   or not.  
 
-- Make sidebar accessible, include menu-item to de-activate it or move it
-  to the side.
+- Fix sidebar menu item to be able to show/hide sidebar independently on each
+  window.
 
 - Find a way to properly unit test the addon
 
@@ -61,10 +61,14 @@ Installation instructions
 You'll have to package the extension yourself to test it since it's not
 distributed anywhere at the moment.
 
+- Make sure you have an updated checkout of the repository and its git
+  submodules.
+
 - Install the [Add-on SDK][].
 
 - Once inside the SDK environnement (having activated it using `source
-  bin/activate`), go to the add-on directory, and run `cfx xpi`.
+  bin/activate`), go to the add-on directory, and run `cfx run` to quickly test
+  that everything is OK, and `cfx xpi` to generate the addon file.
 
 - Drag & drop the resulting xpi to firefox.
 
