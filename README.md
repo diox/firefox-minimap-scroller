@@ -38,14 +38,15 @@ Here are the main issues I plan to fix before considering the addon somewhat
 - Fix sidebar menu item to be able to show/hide sidebar independently on each
   window.
 
-- Find a way to properly unit test the addon
+- Find a way to properly unit test the addon.
 
-- Clean up code
+- Clean up code.
 
 Preview
 -------
 
 Here is what it looks like:
+
 ![Image Preview][Image Preview]
 
 In addition, I made a small [screencast][Video Preview] (OGV format, 50 seconds,
