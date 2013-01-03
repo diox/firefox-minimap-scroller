@@ -2,7 +2,7 @@
     "name": "firefox-minimap-scroller", 
     "license": "MPL 2.0", 
     "author": "Mathieu Pillard <ext@virgule.net>", 
-    "version": "0.0.9",
+    "version": "0.0.10",
     "fullName": "firefox-minimap-scroller", 
     "id": "jid1-hB3wKLNIRkXy1Q", 
     "description": "A minimap to scroll in web pages",
