@@ -6,5 +6,27 @@
     "fullName": "firefox-minimap-scroller", 
     "id": "jid1-hB3wKLNIRkXy1Q", 
     "description": "A minimap to scroll in web pages",
-    "dependencies": ["menuitems", "xulkeys", "addon-sdk"]
+    "dependencies": ["menuitems", "xulkeys", "addon-sdk"],
+    "preferences": [{
+        "name": "sidebarWidth",
+        "title": "Sidebar width",
+        "description": "Default width for all the minimap sidebar(s), in pixels.",
+        "type": "integer",
+        "value": 200
+    },
+    {
+        "name": "sidebarPosition",
+        "title": "Sidebar position",
+        "description": "Position for all the minimap sidebar(s).",
+        "type": "radio",
+        "value": "right",
+        "options": [{
+            "value": "left",
+            "label": "Left"
+        },
+        {
+            "value": "right",
+            "label": "Right (default)"
+        }]
+    }]
 }
