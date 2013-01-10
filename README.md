@@ -1,13 +1,13 @@
-Firefox Minimap Scroller
-========================
+Firefox Minimap Scroller Sidebar Addon
+======================================
 
 Description
 -----------
 
-Firefox Minimap Scroller addon adds a special sidebar to your browser which
-displays a small minimap representing the document inside your current active 
-tab and its visible area. You can use this minimap to navigate around the 
-document, scroll clickly to a specific element, etc.
+Firefox Minimap Scroller Sidebar Addon adds a special sidebar to your browser
+which displays a small minimap representing the document inside your current
+active tab and its visible area. You can use this minimap to navigate around 
+the document, scroll clickly to a specific element, etc.
 
 The minimap and the rectangle showing the visible area are updated when you
 scroll, resize, change page etc (Unfortunately for the moment it can not react
