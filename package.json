@@ -3,7 +3,7 @@
     "license": "MPL 2.0", 
     "author": "Mathieu Pillard <ext@virgule.net>", 
     "version": "0.0.10",
-    "fullName": "firefox-minimap-scroller", 
+    "fullName": "Minimap Scroller Sidebar",
     "id": "jid1-hB3wKLNIRkXy1Q", 
     "description": "A minimap to scroll in web pages",
     "dependencies": ["menuitems", "xulkeys", "addon-sdk"],
