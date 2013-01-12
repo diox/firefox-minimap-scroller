@@ -7,3 +7,6 @@
 [submodule "packages/xulkeys"]
 	path = packages/xulkeys
 	url = git://github.com/erikvold/xulkeys-jplib.git
+[submodule "packages/menupopup"]
+	path = packages/menupopup
+	url = git://github.com/diox/menupopup-jplib.git

@@ -6,7 +6,7 @@
     "fullName": "Minimap Scroller Sidebar",
     "id": "jid1-hB3wKLNIRkXy1Q", 
     "description": "A minimap sidebar to scroll in web pages",
-    "dependencies": ["menuitems", "xulkeys", "addon-sdk"],
+    "dependencies": ["menupopup", "menuitems", "xulkeys", "addon-sdk"],
     "preferences": [{
         "name": "sidebarWidth",
         "title": "Sidebar width",
