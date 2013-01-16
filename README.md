@@ -16,31 +16,6 @@ to CSS-only changes, but it does change when new elements are added).
 This was inspired by the minimap feature found in many games and text editors,
 particularly Sublime Text 2. 
 
-Current state and roadmap
--------------------------
-
-Current version is 0.0.10. It's very much **experimental**, may crash your 
-computer, have horrible memory leaks, be terribly slow, etc, so for the moment,
-don't bother reporting these kind of issues unless you can tell me how to fix
-them :-)
-
-Here are the main issues I plan to fix before considering the addon somewhat
-"stable":
-
-- Stop re-drawing when switching tabs. This means storing a canvas for every
-  tab, updating it in the background, and show the right one when activating a
-  tab.
-
-- Find a way to use MozAfterPaint to be able to react to CSS-only changes.
-  Investigate whether it could eventually replace the whole content-script 
-  or not.  
-
-- Fix sidebar menu item to be able to show/hide sidebar independently on each
-  window.
-
-- Find a way to properly unit test the addon.
-
-- Clean up code.
 
 Preview
 -------
@@ -94,3 +69,28 @@ The workaround is easy:
 ```
 
 [Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
+
+
+Roadmap
+-------
+
+Here are the main issues I plan to adress before making a real release of the 
+add-on and distribute it "officially":
+
+- Stop re-drawing when switching tabs. This means storing a canvas for every
+  tab, updating it in the background, and show the right one when activating a
+  tab. I'm not sure it's completely useful: it would certainly incur an 
+  important memory penalty, and for the moment switching tabs seems pretty fast,
+  at least on my machine.
+
+- Find a way to use MozAfterPaint to be able to react to CSS-only changes.
+  Investigate whether it could eventually replace the whole content-script 
+  or not. 
+
+- Fix sidebar menu item to be able to show/hide sidebar independently on each
+  window. This requires some ugly hacks or a propre fix in the external 
+  menuitems library.
+
+- Find a way to properly unit test the add-on.
+
+- Clean up code.
