@@ -37,10 +37,18 @@ Installation instructions
 You'll have to package the extension yourself to test it since it's not
 distributed anywhere at the moment.
 
-- Make sure you have an updated checkout of the repository and its git
-  submodules.
-
-- Install the [Add-on SDK][].
+- First, make sure you have an updated checkout of the repository and its git
+  submodules:
+```shell
+$ git clone --recursive git://github.com/diox/firefox-minimap-scroller.git
+$ cd firefox-minimap-scroller
+```
+ Or, if you already cloned it:
+```shell
+    $ cd /path/to/your-firefox-minimap-scroller-clone
+    $ git checkout master && git pull && git submodule update --init --recursive
+```
+- If you haven't done that already, download and install the [Add-on SDK][].
 
 - Once inside the SDK environnement (having activated it using `source
   bin/activate`), go to the add-on directory, and run `cfx run` to quickly test
@@ -69,6 +77,18 @@ The workaround is easy:
 ```
 
 [Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
+
+
+Updating
+--------
+
+Assuming you already cloned the repository once, and already have the Add-on SDK
+up and running, you just need to do this:
+
+
+And then follow the installation instructions starting from the 
+
+
 
 
 Roadmap
