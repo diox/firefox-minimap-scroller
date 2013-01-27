@@ -39,15 +39,19 @@ distributed anywhere at the moment.
 
 - First, make sure you have an updated checkout of the repository and its git
   submodules:
-```shell
+
+ ```shell
 $ git clone --recursive git://github.com/diox/firefox-minimap-scroller.git
 $ cd firefox-minimap-scroller
-```
+ ```
+
  Or, if you already cloned it:
-```shell
-    $ cd /path/to/your-firefox-minimap-scroller-clone
+
+ ```shell
+    $ cd /path/to/firefox-minimap-scroller/
     $ git checkout master && git pull && git submodule update --init --recursive
-```
+ ```
+
 - If you haven't done that already, download and install the [Add-on SDK][].
 
 - Once inside the SDK environnement (having activated it using `source
