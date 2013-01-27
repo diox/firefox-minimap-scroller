@@ -38,7 +38,8 @@ You'll have to package the extension yourself to test it since it's not
 distributed anywhere at the moment.
 
 - Make sure you have an updated checkout of the repository and its git
-  submodules.
+  submodules; you can do so with the following command: ```git clone 
+   --recursive git@github.com:diox/firefox-minimap-scroller.git```
 
 - Install the [Add-on SDK][].
 
