@@ -83,18 +83,6 @@ The workaround is easy:
 [Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
 
 
-Updating
---------
-
-Assuming you already cloned the repository once, and already have the Add-on SDK
-up and running, you just need to do this:
-
-
-And then follow the installation instructions starting from the 
-
-
-
-
 Roadmap
 -------
 
