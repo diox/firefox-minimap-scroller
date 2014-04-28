@@ -2,11 +2,11 @@
     "name": "firefox-minimap-scroller", 
     "license": "MPL 2.0", 
     "author": "Mathieu Pillard <ext@virgule.net>", 
-    "version": "0.1",
+    "version": "0.2",
     "fullName": "Minimap Scroller Sidebar",
     "id": "jid1-hB3wKLNIRkXy1Q", 
     "description": "A minimap sidebar to scroll in web pages",
-    "dependencies": ["menupopup", "menuitems", "xulkeys", "addon-sdk"],
+    "dependencies": ["menupopup", "pathfinder"],
     "preferences": [{
         "name": "sidebarWidth",
         "title": "Sidebar width",
