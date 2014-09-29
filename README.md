@@ -34,8 +34,19 @@ no sound) demonstrating the addon.
 Installation instructions
 -------------------------
 
-You'll have to package the extension yourself to test it since it's not
-distributed anywhere at the moment.
+- Download the xpi [from github][Github Download Link].
+
+- In Firefox, go to about:addons, select "Extensions", and from the icon at the
+  top select "Install Add-on From File...", and choose the XPI you just
+  downloaded.
+
+[Github Download Link]: https://github.com/diox/firefox-minimap-scroller/raw/master/dist/firefox-minimap-scroller.xpi
+
+
+Building instructions
+---------------------
+
+Want to contribute or build our own XPI ?
 
 - First, make sure you have an updated checkout of the repository and its git
   submodules:
