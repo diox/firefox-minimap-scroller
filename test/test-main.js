@@ -1,15 +1,15 @@
-var main = require("main");
-const windows = require('windows').browserWindows;
-const tabs = require('tabs');
-const self = require('self');
-const timers = require('timers');
+const windows = require('sdk/windows').browserWindows;
+const tabs = require('sdk/tabs');
+const self = require('sdk/self');
+const timers = require('sdk/timers');
 const { List } = require('sdk/util/list');
 const { getActiveTab } = require('sdk/tabs/utils');
 const { getMostRecentBrowserWindow } = require('sdk/window/utils');
 
 
 exports["test pagemod load simple page async"] = function(assert, done) {
-    var testUrl = self.data.url('tests/simple.html');
+    const main = require("main");
+    const testUrl = self.data.url('tests/simple.html');
 
     main.pagemod.include.add(testUrl);
     main.pagemod.once("attach", function(worker) {
@@ -24,6 +24,8 @@ exports["test pagemod load simple page async"] = function(assert, done) {
         worker.port.on('load', function(e) {
             assert.equal(previousEvent, 'DOMContentLoaded');
             main.pagemod.include.remove(testUrl);
+            main.unload();
+            tabs.activeTab.close();
             done();
         });
     });
@@ -31,7 +33,8 @@ exports["test pagemod load simple page async"] = function(assert, done) {
 };
 
 exports["test pagemod scroll simple page async"] = function(assert, done) {
-    var testUrl = self.data.url('tests/simple-scroll.html');
+    const main = require("main");
+    const testUrl = self.data.url('tests/simple-scroll.html');
 
     main.pagemod.include.add(testUrl);
     main.pagemod.once("attach", function(worker) {
@@ -45,6 +48,8 @@ exports["test pagemod scroll simple page async"] = function(assert, done) {
 
         worker.port.on('scroll', function(e) {
             main.pagemod.include.remove(testUrl);
+            main.unload();
+            tabs.activeTab.close();
             done();
         });
     });
@@ -52,7 +57,8 @@ exports["test pagemod scroll simple page async"] = function(assert, done) {
 };
 
 exports["test pagemod mutation simple page async"] = function(assert, done) {
-    var testUrl = self.data.url('tests/simple.html');
+    const main = require("main");
+    const testUrl = self.data.url('tests/simple.html');
 
     main.pagemod.include.add(testUrl);
     main.pagemod.once("attach", function(worker) {
@@ -66,6 +72,8 @@ exports["test pagemod mutation simple page async"] = function(assert, done) {
 
         worker.port.on('mutation', function(e) {
             main.pagemod.include.remove(testUrl);
+            main.unload();
+            tabs.activeTab.close();
             done();
         });
     });
