@@ -71,8 +71,8 @@ $ cd firefox-minimap-scroller
 
 - Drag & drop the resulting xpi to firefox.
 
-**Note:** If your OS uses uses py3k by default, activating the add-on sdk will
-display an error message:
+**Note:** If your OS uses uses Python 3 by default, activating the add-on sdk
+will display an error message:
 
 > Error: You appear to be using Python 3, but the Add-on SDK only supports the
 > Python 2.x line.
