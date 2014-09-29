@@ -36,9 +36,7 @@ Installation instructions
 
 - Download the xpi [from github][Github Download Link].
 
-- In Firefox, go to about:addons, select "Extensions", and from the icon at the
-  top select "Install Add-on From File...", and choose the XPI you just
-  downloaded.
+- Drag & drop the resulting xpi to firefox.
 
 [Github Download Link]: https://github.com/diox/firefox-minimap-scroller/raw/master/dist/firefox-minimap-scroller.xpi
 
