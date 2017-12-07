@@ -1,3 +1,4 @@
+/* global browser */
 {
     let portToCurrentTab;
     let windowId;
@@ -215,7 +216,7 @@
                     sidebarRootElm.addEventListener(
                         'mousemove', mouseMoveCallback);
 
-                    sidebarRootElm.addEventListener('mouseup', (e) => {
+                    sidebarRootElm.addEventListener('mouseup', () => {
                         // Remove mousemove event listener on mouse up, we
                         // don't need it any more.
                         sidebarRootElm.removeEventListener(
