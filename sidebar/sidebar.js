@@ -102,11 +102,10 @@
     };
 
     let drawScroller = (dimensions) => {
+        scrollerElm.style.display = 'block';
         scrollerElm.style.width = dimensions.width + 'px';
         scrollerElm.style.height = dimensions.height + 'px';
-        scrollerElm.style.top = dimensions.top + 'px';
-        scrollerElm.style.left = dimensions.left + 'px';
-        scrollerElm.style.display = 'block';
+        scrollerElm.style.transform = `translate(${dimensions.left}px,${dimensions.top}px)`;
     };
 
     let isScrollerVisible = () => {
@@ -116,24 +115,23 @@
         return scrollerElm.style.display == 'block';
     };
 
-    let isClickOutsideScroller = (e) => {
-        let sLeft = scrollerElm.offsetLeft;
-        let sWidth = scrollerElm.offsetWidth;
-        let sTop = scrollerElm.offsetTop;
-        let sHeight = scrollerElm.offsetHeight;
+    let isMouseOutsideScroller = (e) => {
+        let sDimensions = scrollerElm.getBoundingClientRect();
 
-        if (e.pageX < sLeft || e.pageX > sLeft + sWidth ||
-            e.pageY < sTop || e.pageY > sTop + sHeight) {
+        if (e.clientX < sDimensions.left || e.clientX > sDimensions.right ||
+            e.clientY < sDimensions.top || e.clientY > sDimensions.bottom) {
             return true;
         }
         return false;
     };
 
     let sendAbsoluteScrollMessage = (e) => {
+        let sDimensions = scrollerElm.getBoundingClientRect();
+
         messageSender({
             'scrollAbsolute': {
-                'absoluteX': e.pageX - (scrollerElm.offsetWidth / 2),
-                'absoluteY': e.pageY - (scrollerElm.offsetHeight / 2),
+                'absoluteX': e.pageX - (sDimensions.width / 2),
+                'absoluteY': e.pageY - (sDimensions.height / 2),
             }
         });
     };
@@ -190,7 +188,7 @@
             if (isScrollerVisible()) {
                 e.preventDefault();
 
-                if (isClickOutsideScroller(e)) {
+                if (isMouseOutsideScroller(e)) {
                     // For a click outside the scroller, all we have to do is
                     // ask the content to scroll to that position.
                     sendAbsoluteScrollMessage(e);

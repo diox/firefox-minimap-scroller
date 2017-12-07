@@ -19,6 +19,5 @@ body, html {
     background: rgba(100, 100, 100, 0.3);
     display: none;
     outline: 1px solid rgb(100, 100, 100);
-    transition: all 0.150s ease;
 }
 
