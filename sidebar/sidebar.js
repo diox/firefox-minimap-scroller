@@ -25,15 +25,16 @@
     };
 
     let activeTabChanged = (activeInfo) => {
-        // Active tab changed.
+        // Active tab changed. We need to check the windowid to see if that's
+        // relevant for this sidebar.
         if (activeInfo.windowId != windowId) {
             return;
         }
 
+        // It was! We need to reset the minimap entirely and reconnect to the
+        // tab - doing so will trigger a fresh capture and set up event
+        // listeners again.
         resetMinimap();
-
-        // Now connect to the tab, immediately asking it to capture its
-        // contents and then listening for changes.
         connectToTab(activeInfo.tabId);
     };
 
