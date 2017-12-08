@@ -6,6 +6,19 @@
     let minimapElm;
     let sidebarRootElm;
 
+    // Basic debounce function.
+    const debounce = (fn, time) => {
+        let timeout;
+
+        return function debounced (...args) {
+            /* eslint-disable no-invalid-this */
+            const func = () => fn.apply(this, args);
+
+            clearTimeout(timeout);
+            timeout = setTimeout(func, time);
+        };
+    };
+
     // FIXME: is sidebar is hidden, maybe tell the content script to not send
     // us anything. Not sure if needed, need to test.
 
@@ -46,10 +59,9 @@
         // given tab at at time, so just overwrite portToCurrentTab.
         portToCurrentTab = browser.tabs.connect(tabId);
 
-        messageSender({
-            'sidebarWidth': sidebarRootElm.offsetWidth,
-            'sidebarHeight': sidebarRootElm.offsetHeight,
-        });
+        // Send sidebar dimensions. That will trigger the initial capture for
+        // this tab.
+        sendSidebarDimensions();
 
         // Listen for new captures sent by the content script we're connected
         // to.
@@ -106,7 +118,8 @@
         scrollerElm.style.display = 'block';
         scrollerElm.style.width = dimensions.width + 'px';
         scrollerElm.style.height = dimensions.height + 'px';
-        scrollerElm.style.transform = `translate(${dimensions.left}px,${dimensions.top}px)`;
+        scrollerElm.style.transform =
+            `translate(${dimensions.left}px,${dimensions.top}px)`;
     };
 
     let isScrollerVisible = () => {
@@ -145,6 +158,13 @@
             }
         });
     };
+
+    let sendSidebarDimensions = () => {
+        messageSender({
+            'sidebarWidth': sidebarRootElm.offsetWidth,
+            'sidebarHeight': sidebarRootElm.offsetHeight,
+        });
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
         sidebarRootElm = document.documentElement;
@@ -224,5 +244,10 @@
                 }
             }
         });
+
+        // When we resize the sidebar, we need to give the content-script the
+        // new sidebar dimensions.
+        document.defaultView.addEventListener(
+            'resize', debounce(sendSidebarDimensions, 100));
     });
 }

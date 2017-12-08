@@ -3,7 +3,7 @@
     let portToExtension;
     let sidebarWidth;
     let sidebarHeight;
-    let areEventHandlersSet;
+    let initDone;
     let contentRootElement;
 
     // Basic debounce function.
@@ -109,7 +109,11 @@
     let messageReceiver = (message) => {
         if (message.sidebarWidth && message.sidebarHeight) {
             ({sidebarWidth, sidebarHeight} = message);
-            onSidebarReady();
+            if (!initDone) {
+                // The first time we receive this message, we want to set up
+                // event listeners and do an initial capture.
+                onSidebarReady();
+            }
         }
         if (message.scrollDelta) {
             onSidebarScrollDelta(message.scrollDelta);
@@ -140,22 +144,23 @@
         // Initial capture when we switch to the tab or load the extension.
         captureAndSendData();
 
-        if (!areEventHandlersSet) {
-            // Various events to listen to.
-            window.addEventListener('load', captureAndSendData);
-            document.defaultView.addEventListener(
-                'resize', debounce(captureAndSendData, 250));
-            document.addEventListener('scroll', captureAndSendScrollerOnly);
+        // Various events to listen to.
+        window.addEventListener('load', captureAndSendData);
+        document.defaultView.addEventListener(
+            'resize', debounce(captureAndSendData, 250));
+        document.addEventListener('scroll', captureAndSendScrollerOnly);
 
-            let observer = new MutationObserver(
-                debounce(captureAndSendData, 250));
-            observer.observe(document.documentElement, {
-                subtree: true,
-                attributes: false,
-                childList: true,
-                characterData: true
-            });
-        }
+        let observer = new MutationObserver(
+            debounce(captureAndSendData, 250));
+        observer.observe(document.documentElement, {
+            subtree: true,
+            attributes: false,
+            childList: true,
+            characterData: true
+        });
+
+        // Avoid doing this again.
+        initDone = true;
     };
 
     let onConnectionReady = (port) => {
