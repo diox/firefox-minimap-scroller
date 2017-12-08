@@ -23,8 +23,11 @@ was more of a fun exercice to write. Don't expect a lot of support.
 Installation instructions
 -------------------------
 
-It'll be available on AMO as soon as the WebExtension branch is merged into
-master, and this section will be updated then.
+The add-on is available on AMO: 
+https://addons.mozilla.org/en-US/firefox/addon/minimap-scroller-sidebar/
+
+To develop, use `web-ext run` command from this directory or install the add-on
+temporarily using `about:debugging`.
 
 TODO
 ----
