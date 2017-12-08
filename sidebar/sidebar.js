@@ -26,7 +26,7 @@
 
     // FIXME: onTabUpdated fires a lot, there might be a better way to do this
     // by using webnavigation ?
-    let tabUpdated = (tabId, changeInfo, tabInfo) => {
+    const tabUpdated = (tabId, changeInfo, tabInfo) => {
         if (tabInfo.windowId != windowId) {
             return;
         }
@@ -37,7 +37,7 @@
         }
     };
 
-    let activeTabChanged = (activeInfo) => {
+    const activeTabChanged = (activeInfo) => {
         // Active tab changed. We need to check the windowid to see if that's
         // relevant for this sidebar.
         if (activeInfo.windowId != windowId) {
@@ -51,7 +51,7 @@
         connectToTab(activeInfo.tabId);
     };
 
-    let connectToTab = (tabId) => {
+    const connectToTab = (tabId) => {
         if (portToCurrentTab) {
             portToCurrentTab.disconnect();
         }
@@ -68,11 +68,11 @@
         portToCurrentTab.onMessage.addListener(messageReceiver);
     };
 
-    let scrollSidebar = (scrollTop) => {
+    const scrollSidebar = (scrollTop) => {
         sidebarRootElm.scrollTop = scrollTop;
     };
 
-    let messageReceiver = (message) => {
+    const messageReceiver = (message) => {
         if (message.hasOwnProperty('minimapDataURL')) {
             draw(message.minimapDataURL);
         }
@@ -87,13 +87,13 @@
         }
     };
 
-    let messageSender = (message) => {
+    const messageSender = (message) => {
         if (portToCurrentTab) {
             portToCurrentTab.postMessage(message);  
         }
     };
 
-    let resetMinimap = () => {
+    const resetMinimap = () => {
         /** 
          * Blank the minimap and hide scroller. 
          *
@@ -106,15 +106,15 @@
         draw('');
     };
 
-    let draw = (minimapDataURL) => {
+    const draw = (minimapDataURL) => {
         minimapElm.src = minimapDataURL;
     };
 
-    let hideScroller = () => {
+    const hideScroller = () => {
         scrollerElm.style.display = 'none';
     };
 
-    let drawScroller = (dimensions) => {
+    const drawScroller = (dimensions) => {
         scrollerElm.style.display = 'block';
         scrollerElm.style.width = dimensions.width + 'px';
         scrollerElm.style.height = dimensions.height + 'px';
@@ -122,15 +122,15 @@
             `translate(${dimensions.left}px,${dimensions.top}px)`;
     };
 
-    let isScrollerVisible = () => {
+    const isScrollerVisible = () => {
         // scrollerElm.style.display should always be set, and be set
         // to 'block', otherwise the scroller is not visible and this
         // is pointless.
         return scrollerElm.style.display == 'block';
     };
 
-    let isMouseOutsideScroller = (e) => {
-        let sDimensions = scrollerElm.getBoundingClientRect();
+    const isMouseOutsideScroller = (e) => {
+        const sDimensions = scrollerElm.getBoundingClientRect();
 
         if (e.clientX < sDimensions.left || e.clientX > sDimensions.right ||
             e.clientY < sDimensions.top || e.clientY > sDimensions.bottom) {
@@ -139,8 +139,8 @@
         return false;
     };
 
-    let sendAbsoluteScrollMessage = (e) => {
-        let sDimensions = scrollerElm.getBoundingClientRect();
+    const sendAbsoluteScrollMessage = (e) => {
+        const sDimensions = scrollerElm.getBoundingClientRect();
 
         messageSender({
             'scrollAbsolute': {
@@ -150,7 +150,7 @@
         });
     };
 
-    let sendDeltaScrollMessage = (e) => {
+    const sendDeltaScrollMessage = (e) => {
         messageSender({
             'scrollDelta': {
                 'deltaX': e.deltaX,
@@ -159,7 +159,7 @@
         });
     };
 
-    let sendSidebarDimensions = () => {
+    const sendSidebarDimensions = () => {
         messageSender({
             'sidebarWidth': sidebarRootElm.offsetWidth,
             'sidebarHeight': sidebarRootElm.offsetHeight,
@@ -224,7 +224,7 @@
 
                     // Attach mousemove event listener. Need to remove it
                     // later, so use a variable for the callback.
-                    let mouseMoveCallback = (e) => {
+                    const mouseMoveCallback = (e) => {
                         sendDeltaScrollMessage({
                             deltaX: e.pageX - startX,
                             deltaY: e.pageY - startY,

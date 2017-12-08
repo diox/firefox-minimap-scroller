@@ -19,11 +19,11 @@
         };
     };
 
-    let getContentRootElement = () => {
+    const getContentRootElement = () => {
         // https://developer.mozilla.org/docs/Mozilla_Quirks_Mode_Behavior
         // The scrollLeft, scrollTop, scrollWidth, and scrollHeight properties
         // are relative to BODY in quirks mode (instead of HTML)  (bug 211030).
-        let contentDocument = window.document;
+        const contentDocument = window.document;
 
         if (contentDocument.compatMode == 'BackCompat') {
             return contentDocument.body;
@@ -31,25 +31,25 @@
         return contentDocument.documentElement;
     };
 
-    let getCanvasElm = () => {
+    const getCanvasElm = () => {
         // For now we're creating a new canvas every time.
         return document.createElement('canvas');
     };
 
-    let capturePageContents = () => {
-        let pageWidth = contentRootElement.scrollWidth;
-        let pageHeight = contentRootElement.scrollHeight;
+    const capturePageContents = () => {
+        const pageWidth = contentRootElement.scrollWidth;
+        const pageHeight = contentRootElement.scrollHeight;
         if (pageHeight < 10 || pageWidth < 10) {
             // Hack: arbitrary value, used to prevent drawing minimap on dummy
             // content.
             console.warn('Page too small to capture for minimap, ignoring.')
             return null;
         }
-        let canvas = getCanvasElm();
-        let ratio = sidebarWidth / pageWidth;
+        const canvas = getCanvasElm();
+        const ratio = sidebarWidth / pageWidth;
         canvas.width = sidebarWidth;
         canvas.height = Math.round(pageHeight * ratio);
-        let ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
         ctx.scale(ratio, ratio);
         ctx.drawWindow(window, 0, 0, pageWidth, pageHeight, '#FFF');
         // FIXME: is data url the best way to pass that data?
@@ -57,18 +57,19 @@
         return canvas.toDataURL();
     };
 
-    let getScrollerDimensions = () => {
+    const getScrollerDimensions = () => {
         // FIXME: don't recalculate info we already computed in
         // capturePageContents().
-        let pageWidth = contentRootElement.scrollWidth;
-        let pageHeight = contentRootElement.scrollHeight;
-        let ratio = sidebarWidth / pageWidth;
+        const pageWidth = contentRootElement.scrollWidth;
+        const pageHeight = contentRootElement.scrollHeight;
+        const ratio = sidebarWidth / pageWidth;
         let scrollTop = 0;
         if (sidebarHeight && pageHeight > sidebarHeight) {
-            let trueScrollHeight = (
+            const trueScrollHeight =
                 contentRootElement.scrollHeight - 
-                contentRootElement.clientHeight);
-            let scrollRatio = contentRootElement.scrollTop / trueScrollHeight;
+                contentRootElement.clientHeight;
+            const scrollRatio = 
+                contentRootElement.scrollTop / trueScrollHeight;
             scrollTop = Math.round(
                 ((pageHeight * ratio) - sidebarHeight) * scrollRatio
             );
@@ -82,8 +83,8 @@
         }
     };
 
-    let captureAndSendData = () => {
-        let dataURL = capturePageContents();
+    const captureAndSendData = () => {
+        const dataURL = capturePageContents();
         let scrollerDimensions;
         if (dataURL) {
             scrollerDimensions = getScrollerDimensions();
@@ -96,17 +97,17 @@
         });
     };
 
-    let captureAndSendScrollerOnly = () => {
+    const captureAndSendScrollerOnly = () => {
         messageSender({scrollerDimensions: getScrollerDimensions()});
     };
 
-    let messageSender = (message) => {
+    const messageSender = (message) => {
         if (portToExtension && sidebarWidth && sidebarHeight) {
             portToExtension.postMessage(message);
         }
     };
 
-    let messageReceiver = (message) => {
+    const messageReceiver = (message) => {
         if (message.sidebarWidth && message.sidebarHeight) {
             ({sidebarWidth, sidebarHeight} = message);
             if (!initDone) {
@@ -122,25 +123,25 @@
         }
     };
 
-    let onSidebarScrollDelta = (scrollDelta) => {
+    const onSidebarScrollDelta = (scrollDelta) => {
         // FIXME: don't recalculate info we already computed in
         // capturePageContents().
-        let pageWidth = contentRootElement.scrollWidth;
-        let ratio = sidebarWidth / pageWidth;
+        const pageWidth = contentRootElement.scrollWidth;
+        const ratio = sidebarWidth / pageWidth;
         contentRootElement.scrollTop += (scrollDelta.deltaY / ratio);
         contentRootElement.scrollLeft += (scrollDelta.deltaX / ratio);
     };
 
-    let onSidebarScrollAbsolute = (scrollAbsolute) => {
+    const onSidebarScrollAbsolute = (scrollAbsolute) => {
         // FIXME: don't recalculate info we already computed in
         // capturePageContents().
-        let pageWidth = contentRootElement.scrollWidth;
-        let ratio = sidebarWidth / pageWidth;
+        const pageWidth = contentRootElement.scrollWidth;
+        const ratio = sidebarWidth / pageWidth;
         contentRootElement.scrollTop = (scrollAbsolute.absoluteY / ratio);
         contentRootElement.scrollLeft = (scrollAbsolute.absoluteX / ratio);
     };
 
-    let onSidebarReady = () => {
+    const onSidebarReady = () => {
         // Initial capture when we switch to the tab or load the extension.
         captureAndSendData();
 
@@ -150,7 +151,7 @@
             'resize', debounce(captureAndSendData, 250));
         document.addEventListener('scroll', captureAndSendScrollerOnly);
 
-        let observer = new MutationObserver(
+        const observer = new MutationObserver(
             debounce(captureAndSendData, 250));
         observer.observe(document.documentElement, {
             subtree: true,
@@ -163,7 +164,7 @@
         initDone = true;
     };
 
-    let onConnectionReady = (port) => {
+    const onConnectionReady = (port) => {
         portToExtension = port;
 
         portToExtension.onMessage.addListener(messageReceiver);
