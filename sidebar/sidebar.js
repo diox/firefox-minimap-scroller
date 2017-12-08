@@ -215,12 +215,12 @@
                     sidebarRootElm.addEventListener(
                         'mousemove', mouseMoveCallback);
 
+                    // Remove mousemove event listener on mouse up, we
+                    // don't need it any more. Only needs to happen once.
                     sidebarRootElm.addEventListener('mouseup', () => {
-                        // Remove mousemove event listener on mouse up, we
-                        // don't need it any more.
                         sidebarRootElm.removeEventListener(
                             'mousemove', mouseMoveCallback);
-                    });
+                    }, {once: true});
                 }
             }
         });
