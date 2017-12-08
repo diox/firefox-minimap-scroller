@@ -14,7 +14,7 @@ scroll, resize, change page etc (Unfortunately for the moment it can not react
 to CSS-only changes, but it does change when new elements are added).
 
 This was inspired by the minimap feature found in many games and text editors,
-particularly Sublime Text 2.
+particularly Sublime Text.
 
 Note that this add-on is fairly experimental, and probably not very useful. It
 was more of a fun exercice to write. Don't expect a lot of support.
