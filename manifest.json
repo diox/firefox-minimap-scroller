@@ -1,0 +1,25 @@
+{
+
+  "description": "A minimap sidebar to scroll in web pages, similar to some video games and modern text editors.",
+  "manifest_version": 2,
+  "name": "Minimap Scroller",
+  "version": "0.2",
+  "homepage_url": "https://github.com/diox/firefox-minimap-scroller/",
+
+  "permissions": [
+    "<all_urls>",
+    "tabs" 
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/base.js"]
+    }
+  ],
+
+  "sidebar_action": {
+    "default_title": "Minimap",
+    "default_panel": "sidebar/sidebar.html"
+  }
+}

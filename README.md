@@ -1,10 +1,10 @@
-Firefox Minimap Scroller Sidebar Addon
-======================================
+Firefox Minimap Scroller Sidebar Add-on
+=======================================
 
 Description
 -----------
 
-Firefox Minimap Scroller Sidebar Addon adds a special sidebar to your browser
+Firefox Minimap Scroller Sidebar Add-on adds a special sidebar to your browser
 which displays a small minimap representing the document inside your current
 active tab and its visible area. You can use this minimap to navigate around 
 the document, scroll clickly to a specific element, etc.
@@ -14,104 +14,37 @@ scroll, resize, change page etc (Unfortunately for the moment it can not react
 to CSS-only changes, but it does change when new elements are added).
 
 This was inspired by the minimap feature found in many games and text editors,
-particularly Sublime Text 2. 
+particularly Sublime Text 2.
 
-
-Preview
--------
-
-Here is what it looks like:
-
-![Image Preview][Image Preview]
-
-In addition, I made a small [screencast][Video Preview] (OGV format, 50 seconds,
-no sound) demonstrating the addon.
-
-[Image Preview]: http://virgule.net/tmp/firefox-minimap-scroller-0.0.8.jpg
-[Video Preview]: http://virgule.net/tmp/firefox-minimap-scroller-0.0.8.ogv
+Note that this add-on is fairly experimental, and probably not very useful. It
+was more of a fun exercice to write. Don't expect a lot of support.
 
 
 Installation instructions
 -------------------------
 
-- Download the xpi [from github][Github Download Link].
+The add-on is available on AMO: 
+https://addons.mozilla.org/en-US/firefox/addon/minimap-scroller-sidebar/
 
-- Drag & drop the resulting xpi to firefox.
+To develop, use `web-ext run` command from this directory or install the add-on
+temporarily using `about:debugging`.
 
-[Github Download Link]: https://github.com/diox/firefox-minimap-scroller/raw/master/dist/firefox-minimap-scroller.xpi
+TODO
+----
 
-
-Building instructions
----------------------
-
-Want to contribute or build our own XPI ?
-
-- First, make sure you have an updated checkout of the repository and its git
-  submodules:
-
- ```shell
-$ git clone --recursive git://github.com/diox/firefox-minimap-scroller.git
-$ cd firefox-minimap-scroller
- ```
-
- Or, if you already cloned it:
-
- ```shell
-    $ cd /path/to/firefox-minimap-scroller/
-    $ git checkout master && git pull && git submodule update --init --recursive
- ```
-
-- If you haven't done that already, download and install the [Add-on SDK][].
-
-- Once inside the SDK environnement (having activated it using `source
-  bin/activate`), go to the add-on directory, and run `cfx run` to quickly test
-  that everything is OK, and `cfx xpi` to generate the addon file.
-
-- Drag & drop the resulting xpi to firefox.
-
-**Note:** If your OS uses uses Python 3 by default, activating the add-on sdk
-will display an error message:
-
-> Error: You appear to be using Python 3, but the Add-on SDK only supports the
-> Python 2.x line.
-
-The workaround is easy:
-
-1. Symlink your python2 executable to the add-on sdk bin folder
-2. Change your path before activating the SDK
-
-```shell
-    $ cd /path/to/addon-sdk/
-    $ ln -s /usr/bin/python2 bin/
-    $ export PATH=`pwd`/bin:$PATH
-    $ source bin/activate
-    $ cd /path/to/firefox-minimap-scroller/
-    $ cfx xpi
-```
-
-[Add-on SDK]: https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/installation.html
-
-
-Roadmap
--------
-
-Here are the main issues I plan to adress before making a real release of the 
-add-on and distribute it "officially":
-
-- Stop re-drawing when switching tabs. This means storing a canvas for every
-  tab, updating it in the background, and show the right one when activating a
-  tab. I'm not sure it's completely useful: it would certainly incur an 
-  important memory penalty, and for the moment switching tabs seems pretty fast,
-  at least on my machine.
+- Stop re-drawing that much, particularly when switching tabs. There are two
+  parts to this: better, more specific events need to be used instead of the
+  super generic browser.tabs.onUpdated, and also maybe storing a canvas for
+  every tab, updating it in the background, and show the right one when
+  activating a tab. I'm not sure it's completely useful: it would certainly
+  incur an important memory penalty, and for the moment switching tabs seems
+  pretty fast.
 
 - Find a way to use MozAfterPaint to be able to react to CSS-only changes.
-  Investigate whether it could eventually replace the whole content-script 
-  or not. 
 
-- Fix sidebar menu item to be able to show/hide sidebar independently on each
-  window. This requires some ugly hacks or a propre fix in the external 
-  menuitems library.
+- Show sidebar on the right. This would require new APIs in Firefox itself.
+  In the meantime, it's possible to do this using userChrome.css.
 
-- Find a way to properly unit test the add-on.
+- Find a way to have proper unit and integration tests of the add-on.
 
 - Clean up code.

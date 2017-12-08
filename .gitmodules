@@ -1,6 +1,3 @@
-[submodule "packages/menupopup"]
-	path = packages/menupopup
-	url = git://github.com/diox/menupopup-jplib.git
 [submodule "packages/pathfinder"]
 	path = packages/pathfinder
 	url = https://github.com/diox/pathfinder.git
