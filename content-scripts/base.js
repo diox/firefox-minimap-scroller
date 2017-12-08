@@ -1,10 +1,10 @@
 /* global browser */
 {
+    let contentRootElement;
+    let initDone;
     let portToExtension;
     let sidebarWidth;
     let sidebarHeight;
-    let initDone;
-    let contentRootElement;
 
     // Basic debounce function.
     const debounce = (fn, time) => {
@@ -110,10 +110,14 @@
     const messageReceiver = (message) => {
         if (message.sidebarWidth && message.sidebarHeight) {
             ({sidebarWidth, sidebarHeight} = message);
-            if (!initDone) {
+            if (message.hasOwnProperty('forceDraw')) {
+                captureAndSendData();
+
                 // The first time we receive this message, we want to set up
                 // event listeners and do an initial capture.
-                onSidebarReady();
+                if (!initDone) {
+                    initContentScript();
+                }
             }
         }
         if (message.scrollDelta) {
@@ -141,10 +145,7 @@
         contentRootElement.scrollLeft = (scrollAbsolute.absoluteX / ratio);
     };
 
-    const onSidebarReady = () => {
-        // Initial capture when we switch to the tab or load the extension.
-        captureAndSendData();
-
+    const initContentScript = () => {
         // Various events to listen to.
         window.addEventListener('load', captureAndSendData);
         document.defaultView.addEventListener(

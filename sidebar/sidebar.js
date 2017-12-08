@@ -61,7 +61,7 @@
 
         // Send sidebar dimensions. That will trigger the initial capture for
         // this tab.
-        sendSidebarDimensions();
+        sendSidebarDimensions({forceDraw: true});
 
         // Listen for new captures sent by the content script we're connected
         // to.
@@ -159,10 +159,11 @@
         });
     };
 
-    const sendSidebarDimensions = () => {
+    const sendSidebarDimensions = (extra) => {
         messageSender({
             'sidebarWidth': sidebarRootElm.offsetWidth,
             'sidebarHeight': sidebarRootElm.offsetHeight,
+            ...extra,
         });
     }
 
