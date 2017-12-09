@@ -5,6 +5,8 @@
     let scrollerElm;
     let minimapElm;
     let sidebarRootElm;
+    let startX;
+    let startY;
 
     // Basic debounce function.
     const debounce = (fn, time) => {
@@ -165,6 +167,36 @@
             'sidebarHeight': sidebarRootElm.offsetHeight,
             ...extra,
         });
+    };
+
+    const onMouseUp = () => {
+        /**
+         * Callback to handle cleanup that needs to happen when mouse button
+         * is released. Also removes itself to prevent any unnecessary extra
+         * calls.
+         */
+        sidebarRootElm.removeEventListener('mouseup', onMouseUp);
+        sidebarRootElm.removeEventListener('mousemove', onMouseMove);
+    };
+
+    const onMouseMove = (e) => {
+        /**
+         * Callback to handle mouse mouvement. Installed when mouse button is
+         * pressed.
+         */
+        if (!e.buttons) {
+            // If the button was released outside the sidebar document, we
+            // don't receive a mouseup, so we need to check here if no buttons
+            // are currently pressed and call the onmouseup callback ourselves.
+            onMouseUp();
+        } else {
+            sendDeltaScrollMessage({
+                deltaX: e.pageX - startX,
+                deltaY: e.pageY - startY,
+            });
+            startX = e.pageX;
+            startY = e.pageY;
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -220,28 +252,15 @@
                     // released.
 
                     // Original position to calculate the delta.
-                    let startX = e.pageX;
-                    let startY = e.pageY;
+                    startX = e.pageX;
+                    startY = e.pageY;
 
-                    // Attach mousemove event listener. Need to remove it
-                    // later, so use a variable for the callback.
-                    const mouseMoveCallback = (e) => {
-                        sendDeltaScrollMessage({
-                            deltaX: e.pageX - startX,
-                            deltaY: e.pageY - startY,
-                        });
-                        startX = e.pageX;
-                        startY = e.pageY;
-                    };
-                    sidebarRootElm.addEventListener(
-                        'mousemove', mouseMoveCallback);
+                    // Attach mousemove event listener.
+                    sidebarRootElm.addEventListener('mousemove', onMouseMove);
 
                     // Remove mousemove event listener on mouse up, we
-                    // don't need it any more. Only needs to happen once.
-                    sidebarRootElm.addEventListener('mouseup', () => {
-                        sidebarRootElm.removeEventListener(
-                            'mousemove', mouseMoveCallback);
-                    }, {once: true});
+                    // don't need it any more.
+                    // sidebarRootElm.addEventListener('mouseup', onMouseUp);
                 }
             }
         });
