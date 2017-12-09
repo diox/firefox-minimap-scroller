@@ -42,8 +42,9 @@ TODO
 
 - Find a way to use MozAfterPaint to be able to react to CSS-only changes.
 
-- Show sidebar on the right. This would require new APIs in Firefox itself.
-  In the meantime, it's possible to do this using userChrome.css.
+- Show sidebar on the right. This would require a new API in Firefox itself.
+  In the meantime, it's possible to do this using userChrome.css, or just using
+  the "Move Sidebar to Right" option in Firefox.
 
 - Find a way to have proper unit and integration tests of the add-on.
 
