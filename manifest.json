@@ -1,25 +1,38 @@
 {
+  "background": {
+    "scripts": ["background/background.js"]
+  },
+
+  "browser_action": {
+    "default_icon": "icon.svg",
+    "default_title": "Minimap"
+  },
+
+  "content_scripts": [
+    {
+      "js": ["content_scripts/base.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
 
   "description": "A minimap sidebar to scroll in web pages, similar to some video games and modern text editors.",
-  "manifest_version": 2,
-  "name": "Minimap Scroller",
-  "version": "0.3.1",
+
   "homepage_url": "https://github.com/diox/firefox-minimap-scroller/",
+
+  "manifest_version": 2,
+
+  "name": "Minimap Scroller",
 
   "permissions": [
     "<all_urls>",
     "tabs" 
   ],
 
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content-scripts/base.js"]
-    }
-  ],
-
   "sidebar_action": {
-    "default_title": "Minimap",
-    "default_panel": "sidebar/sidebar.html"
-  }
+    "default_icon": "icon.svg",
+    "default_panel": "sidebar/sidebar.html",
+    "default_title": "Minimap"
+  },
+
+  "version": "0.4.0"
 }
