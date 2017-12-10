@@ -1,5 +1,6 @@
-/* global browser */
 {
+    import { default_settings } from '../settings';
+
     let portToCurrentTab;
     let windowId;
     let scrollerElm;
@@ -203,6 +204,11 @@
         sidebarRootElm = document.documentElement;
         minimapElm = document.getElementById('minimap');
         scrollerElm = document.getElementById('scroller');
+
+        // Apply custom styles from storage.
+        // FIXME
+        console.log(getComputedStyle(sidebarRootElm).getPropertyValue('--scroller-background-color'));
+        sidebarRootElm.style.setProperty('--scroller-background-color', 'rgba(255, 0, 0, 0.4');
 
         browser.windows.getCurrent({populate: true}).then((windowInfo) => {
             // Store windowId when it changes. We're watching for tab
