@@ -1,3 +1,4 @@
+/* global browser */
 {
     browser.browserAction.onClicked.addListener(() => {
         // FIXME: implement this. Requires storing global state for each

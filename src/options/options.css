@@ -1,0 +1,17 @@
+h1 {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+
+input {
+    display: inline-block;
+    margin-left: 1em;
+}
