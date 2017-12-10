@@ -33,7 +33,7 @@
 
   "options_ui": {
       "browser_style": true,
-      "page": "src/options/options.html",
+      "page": "src/options/options.html"
   },
 
   "permissions": [
