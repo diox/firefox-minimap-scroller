@@ -5,14 +5,18 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "impliedStrict": true
+        },
+        "ecmaVersion": 8
     },
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-newline": "error",
         "array-bracket-spacing": "error",
         "array-callback-return": "error",
-        "array-element-newline": "error",
+        "array-element-newline": "off",
         "arrow-body-style": "off",
         "arrow-parens": [
             "error",
@@ -150,7 +154,7 @@
         "no-iterator": "error",
         "no-label-var": "error",
         "no-labels": "error",
-        "no-lone-blocks": "error",
+        "no-lone-blocks": "off",
         "no-lonely-if": "error",
         "no-loop-func": "error",
         "no-magic-numbers": "off",

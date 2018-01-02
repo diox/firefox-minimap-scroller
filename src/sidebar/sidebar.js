@@ -1,4 +1,4 @@
-/* global browser */
+/* global browser, readSettings */
 {
     let portToCurrentTab;
     let windowId;
@@ -184,7 +184,7 @@
          * Callback to handle mouse mouvement. Installed when mouse button is
          * pressed.
          */
-        if (!e.buttons) {
+        if (e.buttons === 0) {
             // If the button was released outside the sidebar document, we
             // don't receive a mouseup, so we need to check here if no buttons
             // are currently pressed and call the onmouseup callback ourselves.
@@ -199,10 +199,28 @@
         }
     }
 
+    const applySettings = async () => {
+        let settings = await readSettings()
+        for (let item of settings) {
+            sidebarRootElm.style.setProperty(`--${item.name}`, item.value);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         sidebarRootElm = document.documentElement;
         minimapElm = document.getElementById('minimap');
         scrollerElm = document.getElementById('scroller');
+
+        // Apply settings (currently custom styles only) from storage and watch
+        // for changes.
+        applySettings();
+
+        browser.storage.onChanged.addListener(() => {
+            // We use applySettings which causes a storage read, which sucks,
+            // but it keeps the sidebar from knowing how settings are actually
+            // implemented behind the scenes.
+            applySettings();
+        });
 
         browser.windows.getCurrent({populate: true}).then((windowInfo) => {
             // Store windowId when it changes. We're watching for tab

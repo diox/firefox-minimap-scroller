@@ -1,0 +1,25 @@
+body, html {
+    background-color: var(--sidebar-background-color);
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* never show actual sidebar scrollbar, because it's ugly and messes up our calculations */
+    width: 100%;    
+}
+
+#minimap {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+}
+
+#scroller {
+    background-color: var(--scroller-background-color);
+    display: none;
+    opacity: var(--scroller-opacity);
+    outline: 1px solid var(--scroller-outline-color);
+    position: absolute;
+    z-index: 2;
+}
